@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caleb Supermarket — Built for Students</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f0f0f;
+  --paper: #f4f1ea;
+  --clay: #c45c3e;
+  --forest: #2d5a3d;
+  --muted: #8a8a8a;
+  --line: #d4d0c8;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+}
+.topbar {
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 100;
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.logo-mark {
+  width: 32px; height: 32px;
+  background: var(--clay);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 0.9rem; font-weight: 700;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--ink);
+  font-size: 0.9rem; font-weight: 500;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--clay);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--clay); color: white;
+  padding: 0.6rem 1.4rem; border-radius: 4px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: #a84d32; }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 85vh;
+  border-bottom: 1px solid var(--line);
+}
+.hero-left {
+  padding: 5rem 3rem;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.hero-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--clay); margin-bottom: 1.5rem;
+}
+.hero-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.8rem; font-weight: 700;
+  line-height: 1.05; margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.hero-left h1 em { font-style: normal; color: var(--clay); }
+.hero-left p {
+  font-size: 1.15rem; color: var(--muted);
+  max-width: 420px; margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; align-items: center; }
+.btn-main {
+  background: var(--ink); color: var(--paper);
+  padding: 1rem 2.2rem; border-radius: 4px;
+  text-decoration: none; font-weight: 600;
+  font-size: 0.95rem; transition: all 0.2s;
+  border: 2px solid var(--ink);
+}
+.btn-main:hover { background: transparent; color: var(--ink); }
+.btn-ghost {
+  color: var(--ink); text-decoration: none;
+  font-weight: 600; font-size: 0.95rem;
+  display: flex; align-items: center; gap: 0.4rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.2rem;
+}
+.hero-right {
+  position: relative;
+  background: #e8e4da;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-img-placeholder {
+  width: 80%; height: 70%;
+  background: #d4cfc4;
+  border-radius: 8px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1rem;
+  color: var(--muted);
+}
+.hero-img-placeholder .big-icon { font-size: 5rem; opacity: 0.4; }
+.hero-img-placeholder span { font-size: 0.85rem; }
+.price-float {
+  position: absolute; bottom: 2rem; right: 2rem;
+  background: white; padding: 1.2rem 1.5rem;
+  border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  border: 1px solid var(--line);
+}
+.price-float small {
+  display: block; font-size: 0.7rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem;
+}
+.price-float strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem; font-weight: 700;
+}
+
+/* Marquee */
+.marquee-bar {
+  background: var(--forest); color: white;
+  padding: 0.8rem 0; overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.marquee-track {
+  display: flex; gap: 4rem;
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+.marquee-track span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Why */
+.why {
+  padding: 6rem 3rem;
+  border-bottom: 1px solid var(--line);
+}
+.why-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 4rem;
+}
+.why-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.6rem; font-weight: 700;
+  max-width: 500px; line-height: 1.1;
+}
+.why-header p {
+  color: var(--muted); max-width: 300px; text-align: right;
+  font-size: 0.95rem;
+}
+.why-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+}
+.why-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--line);
+  transition: background 0.3s;
+}
+.why-card:last-child { border-right: none; }
+.why-card:hover { background: white; }
+.why-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--clay); margin-bottom: 1rem;
+}
+.why-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem; font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+.why-card p {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.6;
+}
+
+/* Deals */
+.deals {
+  padding: 6rem 3rem;
+  border-bottom: 1px solid var(--line);
+}
+.deals-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 3rem;
+}
+.deals-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.6rem; font-weight: 700;
+}
+.deals-header a {
+  color: var(--clay); text-decoration: none;
+  font-weight: 600; font-size: 0.9rem;
+  border-bottom: 2px solid var(--clay);
+  padding-bottom: 0.15rem;
+}
+.deals-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+}
+.deal-item-card {
+  border-right: 1px solid var(--line);
+  padding: 2rem;
+  transition: background 0.3s;
+  position: relative;
+}
+.deal-item-card:last-child { border-right: none; }
+.deal-item-card:hover { background: white; }
+.deal-img-box {
+  height: 220px; background: #e8e4da; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; margin-bottom: 1.5rem;
+  position: relative;
+}
+.deal-badge {
+  position: absolute; top: 1rem; left: 1rem;
+  background: var(--ink); color: white;
+  padding: 0.3rem 0.7rem; border-radius: 3px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
+}
+.deal-item-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;
+}
+.deal-item-card p {
+  font-size: 0.9rem; color: var(--muted); margin-bottom: 1.2rem;
+}
+.deal-price-tag {
+  display: flex; align-items: baseline; gap: 0.8rem;
+}
+.deal-price-tag .now {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem; font-weight: 700;
+}
+.deal-price-tag .was {
+  font-size: 0.9rem; color: var(--muted); text-decoration: line-through;
+}
+
+/* Testimonials */
+.testis {
+  padding: 6rem 3rem;
+  background: var(--ink); color: var(--paper);
+  border-bottom: 1px solid #333;
+}
+.testis-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 4rem;
+}
+.testis-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.6rem; font-weight: 700;
+}
+.testis-header p { color: var(--muted); max-width: 300px; text-align: right; }
+.testis-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+}
+.testi-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid #333;
+}
+.testi-card:last-child { border-right: none; }
+.testi-quote {
+  font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;
+  font-style: italic;
+}
+.testi-person {
+  display: flex; align-items: center; gap: 1rem;
+}
+.testi-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--clay); display: flex;
+  align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1rem; color: white;
+}
+.testi-person div strong {
+  display: block; font-weight: 600; margin-bottom: 0.1rem;
+}
+.testi-person div span {
+  font-size: 0.8rem; color: var(--muted);
+}
+
+/* Location */
+.location {
+  padding: 6rem 3rem;
+  border-bottom: 1px solid var(--line);
+}
+.loc-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+}
+.loc-info h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.6rem; font-weight: 700; margin-bottom: 1rem;
+}
+.loc-info > p {
+  color: var(--muted); margin-bottom: 3rem; max-width: 400px;
+}
+.loc-detail {
+  display: flex; gap: 1.2rem; margin-bottom: 2rem;
+}
+.loc-detail .dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--clay); margin-top: 0.4rem; flex-shrink: 0;
+}
+.loc-detail h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; margin-bottom: 0.3rem;
+}
+.loc-detail p { color: var(--muted); font-size: 0.95rem; }
+.loc-map {
+  background: #e8e4da; border-radius: 8px;
+  height: 420px; display: flex;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 0.8rem;
+  color: var(--muted); border: 1px dashed #c4c0b8;
+}
+.loc-map .big-icon { font-size: 4rem; opacity: 0.3; }
+
+/* Footer */
+footer {
+  background: var(--ink); color: var(--paper);
+  padding: 4rem 3rem 2rem;
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 4rem;
+}
+.footer-brand .logo { color: white; margin-bottom: 1rem; }
+.footer-brand p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+.footer-col h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1.5rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.7rem; }
+.footer-col a {
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 0.9rem; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--clay); }
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-bottom p { color: var(--muted); font-size: 0.8rem; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { border-right: none; border-bottom: 1px solid var(--line); min-height: 60vh; }
+  .why-grid, .deals-grid, .testis-grid { grid-template-columns: 1fr; }
+  .why-card, .deal-item-card, .testi-card { border-right: none; border-bottom: 1px solid var(--line); }
+  .loc-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">🎓 Student ID = 10% off every purchase &nbsp;|&nbsp; Open till 11 PM weekdays</div>
+
+<nav>
+  <a href="#" class="logo"><div class="logo-mark">C</div>Caleb Supermarket</a>
+  <ul class="nav-links">
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#deals">Deals</a></li>
+    <li><a href="#testis">Reviews</a></li>
+    <li><a href="#location">Find Us</a></li>
+  </ul>
+  <a href="#location" class="nav-cta">Visit Store</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label">Caleb University, Imota — Est. 2024</div>
+    <h1>Food that doesn't<br>eat your <em>allowance.</em></h1>
+    <p>Fresh groceries, student bundles, and late-night snacks. Built for people who actually live on this campus.</p>
+    <div class="hero-actions">
+      <a href="#deals" class="btn-main">See This Week's Deals</a>
+      <a href="#location" class="btn-ghost">Where to find us →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <div class="big-icon">🛒</div>
+      <span>[Replace with actual store photo]</span>
+    </div>
+    <div class="price-float">
+      <small>Survival Pack</small>
+      <strong>₦4,500</strong>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>✦ Student Discounts</span>
+    <span>✦ Meal Prep Bundles</span>
+    <span>✦ Open Late</span>
+    <span>✦ Bulk Orders</span>
+    <span>✦ Campus Delivery</span>
+    <span>✦ Student Discounts</span>
+    <span>✦ Meal Prep Bundles</span>
+    <span>✦ Open Late</span>
+    <span>✦ Bulk Orders</span>
+    <span>✦ Campus Delivery</span>
+  </div>
+</div>
+
+<section class="why" id="why">
+  <div class="why-header">
+    <h2>Four reasons students actually shop here.</h2>
+    <p>No corporate fluff. Just the things that matter when you're living on a budget.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <h3>Student Prices</h3>
+      <p>Bulk rice, garri, oil — priced for people who know what "sapa" means. Show your ID, save more.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <h3>5 Mins from Gate</h3>
+      <p>Plot 12, right opposite the main entrance. Walk there in your slippers. No okada needed.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <h3>Open Till 8:30 PM</h3>
+      <p>Weekdays we stay open late. Because hunger doesn't check the time.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <h3>Meal Kits</h3>
+      <p>₦10,000 gets you a full week of pre-packed ingredients. No thinking. Just cook and eat.</p>
+    </div>
+  </div>
+</section>
+
+<section class="deals" id="deals">
+  <div class="deals-header">
+    <h2>This Week's Steals</h2>
+    <a href="#">View all deals →</a>
+  </div>
+  <div class="deals-grid">
+    <div class="deal-item-card">
+      <div class="deal-img-box">
+        <div class="deal-badge">-30%</div>
+        🍚
+      </div>
+      <h4>Survival Starter Pack</h4>
+      <p>Mixed rice and 500 fish, all week long</p>
+      <div class="deal-price-tag"><span class="now">₦5,000</span><span class="was">₦6,500</span></div>
+    </div>
+    <div class="deal-item-card">
+      <div class="deal-img-box">
+        <div class="deal-badge">-25%</div>
+        🍝
+      </div>
+      <h4>Chicken Lover's Crate</h4>
+      <p>2 chicken and chips and 1 shawarma . Comfort food for tough days.</p>
+      <div class="deal-price-tag"><span class="now">₦7,000</span><span class="was">₦8,000</span></div>
+    </div>
+    <div class="deal-item-card">
+      <div class="deal-img-box">
+        <div class="deal-badge">-20%</div>
+        🥖
+      </div>
+      <h4>Breakfast Bundle</h4>
+      <p> 2 bread and eggs, tea. For the 8 AM classes you actually attend.</p>
+      <div class="deal-price-tag"><span class="now">₦1,900</span><span class="was">₦2,200</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis" id="testis">
+  <div class="testis-header">
+    <h2>Real students.<br>Real receipts.</h2>
+    <p>No paid actors. Just people who shop here and have opinions.</p>
+  </div>
+  <div class="testis-grid">
+    <div class="testi-card">
+      <p class="testi-quote">"The meal prep bundles saved me during exam week. Didn't have to think about what to cook. Just grab, open , eat."</p>
+      <div class="testi-person">
+        <div class="testi-avatar">A</div>
+        <div><strong>Amaka O.</strong><span>300L Computer Science</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">"I love that they're open late. After group projects till 8 PM, I can still grab noodles on my way to the hostel."</p>
+      <div class="testi-person">
+        <div class="testi-avatar">T</div>
+        <div><strong>Tolu B.</strong><span>400L Mass Comm</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">"Student discount is legit. Show my ID, get 10% off. Staff even remember my name now. That's rare."</p>
+      <div class="testi-person">
+        <div class="testi-avatar">K</div>
+        <div><strong>Kunle F.</strong><span>200L Business Admin</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="loc-grid">
+    <div class="loc-info">
+      <h2>Come through.</h2>
+      <p>We're right there. You probably walk past us every day and don't even notice.</p>
+      <div class="loc-detail">
+        <div class="dot"></div>
+        <div>
+          <h4>Address</h4>
+          <p>Plot 12, Caleb University Road<br>Opposite Main Gate, Imota, Lagos</p>
+        </div>
+      </div>
+      <div class="loc-detail">
+        <div class="dot"></div>
+        <div>
+          <h4>Hours</h4>
+          <p>Mon–Fri: 7 AM – 11 PM<br>Sat–Sun: 8 AM – 10 PM<br>Exam Season: Till Midnight</p>
+        </div>
+      </div>
+      <div class="loc-detail">
+        <div class="dot"></div>
+        <div>
+          <h4>Contact</h4>
+          <p>+234 801 234 5678<br>hello@calebsupermarket.ng</p>
+        </div>
+      </div>
+    </div>
+    <div class="loc-map">
+      <div class="big-icon">🗺️</div>
+      <span>[Replace with Google Maps iframe]</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo"><div class="logo-mark">C</div>Caleb Supermarket</a>
+      <p>The student-first grocery store at Caleb University. Fresh, affordable, and always open when you need us.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#deals">Deals</a></li>
+        <li><a href="#testis">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Fresh Produce</a></li>
+        <li><a href="#">Staples</a></li>
+        <li><a href="#">Snacks</a></li>
+        <li><a href="#">Meal Kits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Bulk Orders</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Caleb Supermarket. Built for Caleb University students.</p>
+  </div>
+</footer>
+
+</body>
+</html>
